@@ -3,7 +3,7 @@ import numpy
 from gensim.models import word2vec
 import numpy as np
 
-
+'''生成长序列串的子序列集，k为kmer长度'''
 def k_mergenerator(WaiTingKmer, k):
     result = open("result.txt", mode="w")
     DNA = []
@@ -17,7 +17,7 @@ def k_mergenerator(WaiTingKmer, k):
         result.write("\n")
     return DNA
 
-
+'''生成整条基因数据的向量，生成方式为将每个kmer向量相加'''
 def DNA_to_array(DNA, module):
     DNA_array = []
     sum = 0
@@ -27,16 +27,6 @@ def DNA_to_array(DNA, module):
         DNA_array.append(sum)
     return DNA_array
 
-def label_to_array(label):
-    LabelArray = []
-    for i in label:
-        if i =="EI":
-            LabelArray.append(1)
-        elif i == "IE":
-            LabelArray.append(2)
-        elif i == "N":
-            LabelArray.append(3)
-    return np.array(LabelArray)
 
 if __name__ == '__main__':
     splice = open("splice.data")
@@ -79,7 +69,6 @@ if __name__ == '__main__':
     # """kmeans 结果大概78左右"""
 
     '''试试看能不能svm'''
-    Label_Array = label_to_array(lable)
     DNAarray = np.array(DNAarray)
     print(DNAarray.shape)
 
